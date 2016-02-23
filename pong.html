@@ -128,6 +128,19 @@
                                                                                                 myPaddle.y += vy;
 												
 												myPaddle.draw(myContext);
+											
+										if(myPaddle.x > myCanvas.width) {
+                									myPaddle.x = 0; 
+            	    									   
+           									 } else if(myPaddle.y > myCanvas.height) {
+               										 myPaddle.y = 0;
+
+
+										}else if(myPaddle.x < 0){
+											myPaddle.x = myCanvas.width;
+										}else if(myPaddle.y < 0){
+											myPaddle.y = myCanvas.height;
+										}
                 
 
 
