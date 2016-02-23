@@ -1,0 +1,153 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+                <meta charset='utf-8'>
+
+                <title>Pong</title>
+
+                <link rel='stylesheet' type='text/css' href='style.css'>
+
+                <style>
+
+                                #myCanvas {
+
+                                                background: #aad4e5;
+						border-style: solid;
+						border-color: #000000;
+
+                                }		
+
+                </style>
+
+                <script src='paddle.js'>
+
+                </script>
+
+                <script>
+
+                                window.addEventListener('load', documentLoaded);
+
+                                function documentLoaded(e){
+
+                                                var myCanvas = document.getElementById('myCanvas');
+
+                                                if(myCanvas && myCanvas.getContext){
+
+                                                                var myContext = myCanvas.getContext('2d'),
+
+                                                                                myPaddle = new Paddle(),
+
+                                                                                sangle = 0,
+
+                                                                                vx = 0,
+
+                                                                                vy = 0,
+
+                                                                                axy = 0;
+
+                                                                               
+
+                                                                myPaddle.x = myCanvas.width/2;
+
+                                                                myPaddle.y = myCanvas.height/2;
+
+                                                               
+
+                                                                window.addEventListener('keydown', function(e){
+
+                                                                                switch(e.keyCode){
+
+                                                                                                case 37:
+
+                                                                                                                sangle = -3;
+
+                                                                                                                break;
+
+                                                                                                case 39:
+
+                                                                                                                sangle = 3;
+
+                                                                                                                break;
+
+                                                                                                case 38:
+
+                                                                                                                axy = 0.05;
+
+                                                                                                                
+
+                                                                                                                break;
+
+                                                                                }
+
+                                                                }, false);
+
+                                                               
+
+                                                                window.addEventListener('keyup', function(e){
+
+                                                                                sangle = 0;
+
+                                                                                axy = 0;
+
+                                                                                
+
+                                                                },false);
+
+                                                               
+
+                                                                if(myContext != null){
+
+                                                                                (function createAnim(){
+
+                                                                                                window.requestAnimationFrame(createAnim, myCanvas);
+
+                                                                                                myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+
+                                                                                               
+
+                                                                                                myPaddle.rotation += Math.PI/180 * sangle;
+
+                                                                                                var dangle = myPaddle.rotation,
+
+                                                                                                                ay = Math.sin(dangle) * axy,
+
+                                                                                                                ax = Math.cos(dangle) * axy;
+
+                                                                                                vx += ax;
+
+                                                                                                vy += ay;
+
+                                                                                                myPaddle.x += vx;
+
+                                                                                                myPaddle.y += vy;
+												
+												myPaddle.draw(myContext);
+                
+
+
+                                                                                })();
+
+                                                                }
+
+                                                }
+
+                                }
+
+                </script>
+
+</head>
+
+<body>
+
+<canvas width='600' height='400' id='myCanvas'>
+
+                <p>No support for canvas!!!</p>
+
+</canvas>
+
+</body>
+
+</html>
