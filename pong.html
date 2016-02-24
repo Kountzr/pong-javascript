@@ -110,6 +110,7 @@
                                                                                                 myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
                                                                                                
+                
 
                                                                                                 myPaddle.rotation += Math.PI/180 * sangle;
 
@@ -126,22 +127,24 @@
                                                                                                 myPaddle.x += vx;
 
                                                                                                 myPaddle.y += vy;
-												
-												myPaddle.draw(myContext);
+																							if(myPaddle.x > myCanvas.width) {
+                											
+																								vx *= -1;
+																
+																							} else if(myPaddle.y > myCanvas.height) {
+																								vy *= -1;
+																
+																							}else if(myPaddle.x < 0){
+													
+																								vx *= -1;
+																							}else if(myPaddle.y < 0){
+													
+																								vy *= -1;
+													
+																							}
+																							myPaddle.draw(myContext);
 											
-										if(myPaddle.x > myCanvas.width) {
-                									myPaddle.x = 0; 
-            	    									   
-           									 } else if(myPaddle.y > myCanvas.height) {
-               										 myPaddle.y = 0;
-
-
-										}else if(myPaddle.x < 0){
-											myPaddle.x = myCanvas.width;
-										}else if(myPaddle.y < 0){
-											myPaddle.y = myCanvas.height;
-										}
-                
+										
 
 
                                                                                 })();
