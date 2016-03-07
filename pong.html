@@ -10,152 +10,17 @@
 
                 <link rel='stylesheet' type='text/css' href='style.css'>
 
-                <style>
-
-                                #myCanvas {
-
-                                                background: #aad4e5;
-						border-style: solid;
-						border-color: #000000;
-
-                                }		
-
-                </style>
+                
 
                 <script src='paddle.js'>
 
                 </script>
-
-                <script>
-
-                                window.addEventListener('load', documentLoaded);
-
-                                function documentLoaded(e){
-
-                                                var myCanvas = document.getElementById('myCanvas');
-
-                                                if(myCanvas && myCanvas.getContext){
-
-                                                                var myContext = myCanvas.getContext('2d'),
-
-                                                                                myPaddle = new Paddle(),
-
-                                                                                sangle = 0,
-
-                                                                                vx = 0,
-
-                                                                                vy = 0,
-
-                                                                                axy = 0;
-
-                                                                               
-
-                                                                myPaddle.x = myCanvas.width/2;
-
-                                                                myPaddle.y = myCanvas.height/2;
-
-                                                               
-
-                                                                window.addEventListener('keydown', function(e){
-
-                                                                                switch(e.keyCode){
-
-                                                                                                case 37:
-
-                                                                                                                sangle = -3;
-
-                                                                                                                break;
-
-                                                                                                case 39:
-
-                                                                                                                sangle = 3;
-
-                                                                                                                break;
-
-                                                                                                case 38:
-
-                                                                                                                axy = 0.05;
-
-                                                                                                                
-
-                                                                                                                break;
-												case 40:
-														axy = -0.05;
-														break;
-
-                                                                                }
-
-                                                                }, false);
-
-                                                               
-
-                                                                window.addEventListener('keyup', function(e){
-
-                                                                                sangle = 0;
-
-                                                                                axy = 0;
-
-                                                                                
-
-                                                                },false);
-
-                                                               
-
-                                                                if(myContext != null){
-
-                                                                                (function createAnim(){
-
-                                                                                                window.requestAnimationFrame(createAnim, myCanvas);
-
-                                                                                                myContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
-
-                                                                                               
-                
-
-                                                                                                myPaddle.rotation += Math.PI/180 * sangle;
-
-                                                                                                var dangle = myPaddle.rotation,
-
-                                                                                                                ay = Math.sin(dangle) * axy,
-
-                                                                                                                ax = Math.cos(dangle) * axy;
-
-                                                                                                vx += ax;
-
-                                                                                                vy += ay;
-
-                                                                                                myPaddle.x += vx;
-
-                                                                                                myPaddle.y += vy;
-																							if(myPaddle.x > myCanvas.width) {
-                											
-																								vx *= -1;
-																
-																							} else if(myPaddle.y > myCanvas.height) {
-																								vy *= -1;
-																
-																							}else if(myPaddle.x < 0){
-													
-																								vx *= -1;
-																							}else if(myPaddle.y < 0){
-													
-																								vy *= -1;
-													
-																							}
-																							myPaddle.draw(myContext);
-											
-										
-
-
-                                                                                })();
-
-                                                                }
-
-                                                }
-
-                                }
+		<script src ='ball.js'></script>
+		<script src ='pong.js'>
 
                 </script>
+		<script src ='test.js'></script>
+                
 
 </head>
 
